@@ -9,6 +9,7 @@ import { TodoListComponent } from '../../components/todo-list/todo-list.componen
 import { selectTodos } from '../../todo.selectors';
 import { TodoFormService } from './services/todo-form.service';
 import { ITodo } from '../../models/todo.model';
+import { toggleCompleted } from '../../todo.actions';
 
 @Component({
   selector: 'app-todo',
@@ -34,6 +35,10 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm(this.todos());
+  }
+
+  protected onToggleCompleted(id: number): void {
+    this.store.dispatch(toggleCompleted({ id }));
   }
 
   private createForm(todos: ITodo[]) {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { ITodo } from '../../models/todo.model';
@@ -12,4 +12,9 @@ import { ITodo } from '../../models/todo.model';
 })
 export class TodoListComponent {
   @Input({ required: true }) todos!: ITodo[];
+  @Output() toggleCompleted = new EventEmitter<number>();
+
+  protected onToggleCompleted(id: number): void {
+    this.toggleCompleted.emit(id);
+  }
 }

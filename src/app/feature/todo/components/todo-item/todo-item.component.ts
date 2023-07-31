@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ITodo } from '../../models/todo.model';
 
@@ -11,4 +11,9 @@ import { ITodo } from '../../models/todo.model';
 })
 export class TodoItemComponent {
   @Input({required: true}) todo!: ITodo;
+  @Output() toggleCompleted = new EventEmitter<number>();
+
+  protected onToggleCompleted(id: number): void {
+    this.toggleCompleted.emit(id);
+  }
 }

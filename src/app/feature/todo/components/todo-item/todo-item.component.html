@@ -1,6 +1,11 @@
 <li [ngClass]="{'completed': todo.isCompleted}">
   <div class="view">
-    <input class="toggle" type="checkbox">
+    <input
+      class="toggle"
+      type="checkbox"
+      [checked]="todo.isCompleted"
+      (click)="onToggleCompleted(todo.id)"
+    >
     <label>{{ todo.text }}</label>
     <button class="destroy"></button>
   </div>

@@ -1,12 +1,17 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ITodo, Todo } from './models/todo.model';
-import { add } from './todo.actions';
+import { add, toggleCompleted } from './todo.actions';
 
 export const initialState: ITodo[] = [];
 
 export const _todoReducer = createReducer(
   initialState,
-  on(add, (state, { text }) => [...state, new Todo( text )])
+  on(add, (state, { text }) => [...state, new Todo( text )]),
+  on(toggleCompleted, (state, { id }) => {
+    let todo = Object.assign({}, state.find(todo => todo.id === id)!);
+    todo.isCompleted = !todo.isCompleted;
+    return [...state.filter(todo => todo.id !== id), todo]
+  })
 )
 
 export function todoReducer(state: ITodo[] | undefined, action: Action) {

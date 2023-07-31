@@ -3,7 +3,10 @@
   <section class="main">
     <input id="toggle-all" class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
-    <app-todo-list [todos]="todos()"></app-todo-list>
+    <app-todo-list
+      [todos]="todos()"
+      (toggleCompleted)="onToggleCompleted($event)"
+    ></app-todo-list>
   </section>
   <app-todo-footer></app-todo-footer>
 </section>
