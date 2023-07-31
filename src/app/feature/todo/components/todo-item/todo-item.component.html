@@ -1,7 +1,7 @@
-<li>
+<li [ngClass]="{'completed': todo.isCompleted}">
   <div class="view">
     <input class="toggle" type="checkbox">
-    <label>Buy a unicorn</label>
+    <label>{{ todo.text }}</label>
     <button class="destroy"></button>
   </div>
   <input class="edit" value="Rule the web">

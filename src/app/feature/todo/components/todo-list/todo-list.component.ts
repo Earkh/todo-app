@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
+import { ITodo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,5 +11,5 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent {
-
+  @Input({ required: true }) todos!: ITodo[];
 }
