@@ -1,8 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
-import { add } from '../../todo.actions';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -13,18 +10,13 @@ import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./todo-add.component.scss']
 })
 export class TodoAddComponent {
-
-  private store = inject(Store<AppState>);
+  @Output() addTodo = new EventEmitter<string>;
 
   protected todoControl = new FormControl<string>('', { nonNullable: true, validators: Validators.required });
 
   protected onKeyUpEnter(): void {
     if (!this.todoControl.valid) return
-    this.addTodo(this.todoControl.value);
+    this.addTodo.emit(this.todoControl.value);
     this.todoControl.reset();
-  }
-
-  private addTodo(text: string): void {
-    this.store.dispatch(add({text}));
   }
 }

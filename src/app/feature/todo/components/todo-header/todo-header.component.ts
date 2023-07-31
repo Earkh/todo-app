@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoAddComponent } from '../todo-add/todo-add.component';
 
@@ -10,5 +10,9 @@ import { TodoAddComponent } from '../todo-add/todo-add.component';
   styleUrls: ['./todo-header.component.scss']
 })
 export class TodoHeaderComponent {
+  @Output() addTodo = new EventEmitter<string>;
 
+  protected onAddTodo(text: string): void {
+    this.addTodo.emit(text);
+  }
 }

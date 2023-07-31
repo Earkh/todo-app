@@ -2,14 +2,12 @@ import { Component, inject, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
-import { TodoFooterComponent } from '../../components/todo-footer/todo-footer.component';
-import { TodoHeaderComponent } from '../../components/todo-header/todo-header.component';
-import { TodoListComponent } from '../../components/todo-list/todo-list.component';
 import { selectTodos } from '../../todo.selectors';
+import { add, toggleCompleted } from '../../todo.actions';
 import { TodoFormService } from './services/todo-form.service';
+import { TodoHeaderComponent,TodoListComponent, TodoFooterComponent } from '../../components';
+import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
 import { ITodo } from '../../models/todo.model';
-import { toggleCompleted } from '../../todo.actions';
 
 @Component({
   selector: 'app-todo',
@@ -37,6 +35,10 @@ export class TodoComponent implements OnInit {
     this.createForm(this.todos());
   }
 
+  protected onAddTodo(text: string): void {
+    this.store.dispatch(add({text}));
+  }
+
   protected onToggleCompleted(id: number): void {
     this.store.dispatch(toggleCompleted({ id }));
   }
@@ -44,5 +46,4 @@ export class TodoComponent implements OnInit {
   private createForm(todos: ITodo[]) {
     this.todoForm = this.todoFormService.createForm(todos);
   }
-
 }
