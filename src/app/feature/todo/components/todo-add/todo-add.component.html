@@ -2,6 +2,6 @@
   class="new-todo"
   placeholder="What needs to be done?"
   [formControl]="todoControl"
-  (keyup)="onKeyUp($event)"
+  (keyup.enter)="onKeyUpEnter()"
   autofocus
 >
