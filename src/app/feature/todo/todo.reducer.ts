@@ -8,14 +8,10 @@ export const _todoReducer = createReducer(
   initialState,
   on(add, (state, { text }) => [...state, new Todo( text )]),
   on(toggleCompleted, (state, { id }) => {
-    let todo = Object.assign({}, state.find(todo => todo.id === id)!);
-    todo.isCompleted = !todo.isCompleted;
-    return [...state.filter(todo => todo.id !== id), todo];
+    return [...state.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo)];
   }),
   on(edit, (state, { id, text }) => {
-    let todo = Object.assign({}, state.find(todo => todo.id === id)!);
-    todo.text = text;
-    return [...state.filter(todo => todo.id !== id), todo];
+    return [...state.map(todo => todo.id === id ? { ...todo, text } : todo)];
   }),
   on(remove, (state, { id }) => {
     return [...state.filter(todo => todo.id !== id)];
