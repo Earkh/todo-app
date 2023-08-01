@@ -7,7 +7,7 @@
       (click)="onToggleCompleted(todo.id)"
     >
     <label (dblclick)="onSetEditing()">{{ todo.text }}</label>
-    <button class="destroy"></button>
+    <button class="destroy" (click)="onRemoveTodo(todo.id)"></button>
   </div>
   <input
     class="edit"

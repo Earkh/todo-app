@@ -14,6 +14,7 @@ export class TodoItemComponent implements OnInit {
   @Input({ required: true }) todo!: ITodo;
   @Output() toggleCompleted = new EventEmitter<number>();
   @Output() editTodo = new EventEmitter<ITodo>();
+  @Output() removeTodo = new EventEmitter<number>();
   @ViewChild('inputText') inputText!: ElementRef;
 
   protected textControl!: FormControl<string>;
@@ -51,5 +52,9 @@ export class TodoItemComponent implements OnInit {
       ...this.todo,
       text: this.textControl.value
     })
+  }
+
+  protected onRemoveTodo(id: number): void {
+    this.removeTodo.emit(id);
   }
 }

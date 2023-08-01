@@ -14,12 +14,17 @@ export class TodoListComponent {
   @Input({ required: true }) todos!: ITodo[];
   @Output() toggleCompleted = new EventEmitter<number>();
   @Output() editTodo = new EventEmitter<ITodo>();
+  @Output() removeTodo = new EventEmitter<number>();
 
   protected onToggleCompleted(id: number): void {
     this.toggleCompleted.emit(id);
   }
 
   protected onEditTodo(todo: ITodo): void {
-    this.editTodo.emit(todo)
+    this.editTodo.emit(todo);
+  }
+
+  protected onRemoveTodo(id: number): void {
+    this.removeTodo.emit(id);
   }
 }

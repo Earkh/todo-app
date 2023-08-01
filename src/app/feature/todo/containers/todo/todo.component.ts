@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { selectTodos } from '../../todo.selectors';
-import { add, editTodo, toggleCompleted } from '../../todo.actions';
+import { add, edit, remove, toggleCompleted } from '../../todo.actions';
 import { TodoFormService } from './services/todo-form.service';
 import { TodoHeaderComponent,TodoListComponent, TodoFooterComponent } from '../../components';
 import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
@@ -44,7 +44,11 @@ export class TodoComponent implements OnInit {
   }
 
   protected onEditTodo(todo: ITodo): void {
-    this.store.dispatch(editTodo(todo));
+    this.store.dispatch(edit(todo));
+  }
+
+  protected onRemoveTodo(id: number): void {
+    this.store.dispatch(remove({ id }));
   }
 
   private createForm(todos: ITodo[]) {

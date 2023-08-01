@@ -11,7 +11,12 @@ export const toggleCompleted = createAction(
   props<{ id: number }>()
 );
 
-export const editTodo = createAction(
-  '[TODO] EditTodo',
+export const edit = createAction(
+  '[TODO] Edit',
   props<ITodo>()
+)
+
+export const remove = createAction(
+  '[TODO] Remove',
+  props<{id: number}>()
 )
