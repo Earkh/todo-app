@@ -1,4 +1,4 @@
-<li [ngClass]="{'completed': todo.isCompleted}">
+<li [ngClass]="{'editing': isEditing}">
   <div class="view">
     <input
       class="toggle"
@@ -6,8 +6,8 @@
       [checked]="todo.isCompleted"
       (click)="onToggleCompleted(todo.id)"
     >
-    <label>{{ todo.text }}</label>
+    <label (dblclick)="onSetEditing()">{{ todo.text }}</label>
     <button class="destroy"></button>
   </div>
-  <input class="edit" value="Rule the web">
+  <input class="edit" [formControl]="textControl" (blur)="onCloseEditing()" #inputText>
 </li>
