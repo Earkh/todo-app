@@ -13,6 +13,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 export class TodoItemComponent implements OnInit {
   @Input({ required: true }) todo!: ITodo;
   @Output() toggleCompleted = new EventEmitter<number>();
+  @Output() editTodo = new EventEmitter<ITodo>();
   @ViewChild('inputText') inputText!: ElementRef;
 
   protected textControl!: FormControl<string>;
@@ -43,5 +44,12 @@ export class TodoItemComponent implements OnInit {
 
   protected onCloseEditing(): void {
     this.isEditingControl.setValue(false);
+  }
+
+  protected onEditTodo(): void {
+    this.editTodo.emit({
+      ...this.todo,
+      text: this.textControl.value
+    })
   }
 }

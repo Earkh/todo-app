@@ -9,5 +9,12 @@
     <label (dblclick)="onSetEditing()">{{ todo.text }}</label>
     <button class="destroy"></button>
   </div>
-  <input class="edit" [formControl]="textControl" (blur)="onCloseEditing()" #inputText>
+  <input
+    class="edit"
+    [formControl]="textControl"
+    (keyup.enter)="onEditTodo()"
+    (keyup.escape)="onCloseEditing()"
+    (blur)="onCloseEditing()"
+    #inputText
+  >
 </li>

@@ -6,6 +6,7 @@
     <app-todo-list
       [todos]="todos()"
       (toggleCompleted)="onToggleCompleted($event)"
+      (editTodo)="onEditTodo($event)"
     ></app-todo-list>
   </section>
   <app-todo-footer></app-todo-footer>

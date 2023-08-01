@@ -13,8 +13,13 @@ import { ITodo } from '../../models/todo.model';
 export class TodoListComponent {
   @Input({ required: true }) todos!: ITodo[];
   @Output() toggleCompleted = new EventEmitter<number>();
+  @Output() editTodo = new EventEmitter<ITodo>();
 
   protected onToggleCompleted(id: number): void {
     this.toggleCompleted.emit(id);
+  }
+
+  protected onEditTodo(todo: ITodo): void {
+    this.editTodo.emit(todo)
   }
 }
