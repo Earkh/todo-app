@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Filter, Filters } from '../../../filter/models/filter.model';
 
 @Component({
   selector: 'app-todo-footer',
@@ -9,10 +10,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./todo-footer.component.scss']
 })
 export class TodoFooterComponent {
+  @Input({ required: true }) selectedFilter!: Filter;
   @Output() clearCompleted = new EventEmitter;
+  @Output() setFilter = new EventEmitter<Filter>;
+
+  protected filters: Filter[] = Object.values(Filters);
 
   protected onClearCompleted(): void {
     this.clearCompleted.emit();
+  }
+
+  protected onClickFilter(filter: Filter): void {
+    this.setFilter.emit(filter)
   }
 
 }

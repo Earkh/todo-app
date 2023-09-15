@@ -5,11 +5,16 @@
     <label for="toggle-all">Mark all as complete</label>
     <app-todo-list
       [todos]="todos()"
+      [selectedFilter]="selectedFilter()"
       (toggleCompleted)="toggleCompleted($event)"
       (editTodo)="editTodo($event)"
       (removeTodo)="removeTodo($event)"
     ></app-todo-list>
   </section>
-  <app-todo-footer (clearCompleted)="removeAllCompleted()"></app-todo-footer>
+  <app-todo-footer
+    [selectedFilter]="selectedFilter()"
+    (setFilter)="setFilter($event)"
+    (clearCompleted)="removeAllCompleted()"
+  ></app-todo-footer>
 </section>
 <ui-footer></ui-footer>

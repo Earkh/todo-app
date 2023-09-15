@@ -4,12 +4,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { todoReducer } from './feature/todo/todo.reducer';
+import { appReducers } from './app.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideStore({ todos: todoReducer }),
+    provideStore(appReducers),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
