@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { selectTodos } from '../../todo.selectors';
-import { add, edit, remove, toggleAllCompleted, toggleCompleted } from '../../todo.actions';
+import { add, edit, remove, removeAllCompleted, toggleAllCompleted, toggleCompleted } from '../../todo.actions';
 import { TodoHeaderComponent,TodoListComponent, TodoFooterComponent } from '../../components';
 import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
 import { ITodo } from '../../models/todo.model';
@@ -28,19 +28,23 @@ export class TodoComponent {
 
   protected todos: Signal<ITodo[]> = this.store.selectSignal(selectTodos);
 
-  protected onAddTodo(text: string): void {
+  protected addTodo(text: string): void {
     this.store.dispatch(add({text}));
   }
 
-  protected onEditTodo(todo: ITodo): void {
+  protected editTodo(todo: ITodo): void {
     this.store.dispatch(edit(todo));
   }
 
-  protected onRemoveTodo(id: number): void {
+  protected removeTodo(id: number): void {
     this.store.dispatch(remove({ id }));
   }
 
-  protected onToggleCompleted(id: number): void {
+  protected removeAllCompleted(): void {
+    this.store.dispatch(removeAllCompleted())
+  }
+
+  protected toggleCompleted(id: number): void {
     this.store.dispatch(toggleCompleted({ id }));
   }
 
