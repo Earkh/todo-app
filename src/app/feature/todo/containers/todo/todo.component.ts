@@ -7,6 +7,9 @@ import { add, edit, remove, removeAllCompleted, toggleAllCompleted, toggleComple
 import { TodoHeaderComponent,TodoListComponent, TodoFooterComponent } from '../../components';
 import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
 import { ITodo } from '../../models/todo.model';
+import { Filter } from '../../../filter/models/filter.model';
+import { selectFilter} from '../../../filter/filter.selectors';
+import { setFilter } from '../../../filter/filter.actions';
 
 @Component({
   selector: 'app-todo',
@@ -27,6 +30,7 @@ export class TodoComponent {
   private store = inject(Store);
 
   protected todos: Signal<ITodo[]> = this.store.selectSignal(selectTodos);
+  protected selectedFilter: Signal<Filter> = this.store.selectSignal(selectFilter);
 
   protected addTodo(text: string): void {
     this.store.dispatch(add({text}));
@@ -49,6 +53,10 @@ export class TodoComponent {
   }
 
   protected onToggleAllCompleted(): void {
-    this.store.dispatch((toggleAllCompleted()))
+    this.store.dispatch(toggleAllCompleted());
+  }
+
+  protected setFilter(filter: Filter): void {
+    this.store.dispatch(setFilter({ filter }));
   }
 }

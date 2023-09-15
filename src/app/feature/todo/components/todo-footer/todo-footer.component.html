@@ -1,13 +1,7 @@
 <footer class="footer">
   <ul class="filters">
-    <li>
-      <a class="selected" href="#/">All</a>
-    </li>
-    <li>
-      <a href="#/active">Active</a>
-    </li>
-    <li>
-      <a href="#/completed">Completed</a>
+    <li *ngFor="let filter of filters">
+      <a [class.selected]="filter === selectedFilter" (click)="onClickFilter(filter)">{{ filter }}</a>
     </li>
   </ul>
   <button class="clear-completed" (click)="onClearCompleted()">Clear completed</button>

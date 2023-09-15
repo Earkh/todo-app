@@ -1,6 +1,6 @@
 <ul class="todo-list">
   <app-todo-item
-    *ngFor="let todo of todos"
+    *ngFor="let todo of todos | filter:selectedFilter"
     [todo]="todo"
     (toggleCompleted)="onToggleCompleted($event)"
     (editTodo)="onEditTodo($event)"
