@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./todo-footer.component.scss']
 })
 export class TodoFooterComponent {
+  @Output() clearCompleted = new EventEmitter;
+
+  protected onClearCompleted(): void {
+    this.clearCompleted.emit();
+  }
 
 }

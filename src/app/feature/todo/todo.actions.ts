@@ -24,3 +24,7 @@ export const toggleCompleted = createAction(
 export const toggleAllCompleted = createAction(
   '[TODO] toggleAllCompleted'
 );
+
+export const removeAllCompleted = createAction(
+  '[TODO] removeAllCompleted'
+);

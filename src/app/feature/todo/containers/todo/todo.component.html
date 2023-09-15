@@ -1,15 +1,15 @@
 <section class="todoapp">
-  <app-todo-header (addTodo)="onAddTodo($event)"></app-todo-header>
+  <app-todo-header (addTodo)="addTodo($event)"></app-todo-header>
   <section class="main">
     <input id="toggle-all" class="toggle-all" type="checkbox" (click)="onToggleAllCompleted()">
     <label for="toggle-all">Mark all as complete</label>
     <app-todo-list
       [todos]="todos()"
-      (toggleCompleted)="onToggleCompleted($event)"
-      (editTodo)="onEditTodo($event)"
-      (removeTodo)="onRemoveTodo($event)"
+      (toggleCompleted)="toggleCompleted($event)"
+      (editTodo)="editTodo($event)"
+      (removeTodo)="removeTodo($event)"
     ></app-todo-list>
   </section>
-  <app-todo-footer></app-todo-footer>
+  <app-todo-footer (clearCompleted)="removeAllCompleted()"></app-todo-footer>
 </section>
 <ui-footer></ui-footer>
